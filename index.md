@@ -1,13 +1,13 @@
 The theory part, is from chapter 9 of Kochenderfer, M. J. & Wheeler, T. A. (2019). Algorithms for Optimization. The MIT Press. The various sections have been modified with other materials found on the web
 
 
-# Chapter 9: Population Methods
+# 1.1 Theory: Population Methods
 
 Previous chapters have focused on methods where a single design point is moved incrementally toward a minimum. This chapter presents a variety of population methods that involve optimization using a collection of design points, called **individuals**. Having a large number of individuals distributed throughout the design space can help the algorithm avoid becoming stuck in a local minimum. Information at different points in the design space can be shared between individuals to globally optimize the objective function. Most population methods are stochastic in nature, and it is generally easy to parallelize the computation.
 
 ---
 
-## 9.1 Initialization
+## 1.1 Initialization
 
 Population methods begin with an initial population, just as descent methods require an initial design point. The initial population should be spread over the design space to increase the chances that the samples are close to the best regions.
 
@@ -33,7 +33,7 @@ A method for sampling an initial population of `m` design points using a Cauchy 
 
 ---
 
-## 9.2 Genetic Algorithms
+## 1.2 Genetic Algorithms
 
 **Genetic algorithms** borrow inspiration from biological evolution, where fitter individuals are more likely to pass on their genes to the next generation. An individual's fitness for reproduction is inversely related to the value of the objective function at that point. The design point associated with an individual is represented as a **chromosome**. At each generation, the chromosomes of the fitter individuals are passed on to the next generation after undergoing the genetic operations of **crossover** and **mutation**.
 
@@ -41,13 +41,13 @@ A method for sampling an initial population of `m` design points using a Cauchy 
 
 The genetic algorithm, which takes an objective function `f`, an initial `population`, number of iterations `k_max`, a `SelectionMethod` S, a `CrossoverMethod` C, and a `MutationMethod` M.
 
-### 9.2.1 Chromosomes
+### 1.2.1 Chromosomes
 
 There are several ways to represent chromosomes. The simplest is the **binary string chromosome**, a representation similar to the way DNA is encoded. A random binary string of length `d` can be generated using `bitrand(d)`.
 
 Binary strings are often used due to the ease of expressing crossover and mutation. It is often more natural to represent a chromosome using a list of real values. Such **real-valued chromosomes** are vectors in $\mathbb{R}^d$ that directly correspond to points in the design space.
 
-### 9.2.2 Initialization
+### 1.2.2 Initialization
 
 Genetic algorithms start with a random initial population. Binary string chromosomes are typically initialized using random bit strings.
 
@@ -55,7 +55,7 @@ Genetic algorithms start with a random initial population. Binary string chromos
 
 A method for sampling random starting populations of `m` bit-string chromosomes of length `n`.
 
-### 9.2.3 Selection
+### 1.2.3 Selection
 
 Selection is the process of choosing chromosomes to use as parents for the next generation. For a population with `m` chromosomes, a selection method will produce a list of `m` parental pairs for the `m` children of the next generation.
 
@@ -67,7 +67,7 @@ There are several approaches for biasing the selection toward the fittest:
 
 ### Algorithm 9.6 — Selection Methods
 
-### 9.2.4 Crossover
+### 1.2.4 Crossover
 
 Crossover combines the chromosomes of parents to form children. There are several crossover schemes:
 
@@ -87,7 +87,7 @@ where $\lambda$ is a scalar parameter typically set to one-half.
 
 A crossover method for real-valued chromosomes which performs linear interpolation between the parents.
 
-### 9.2.5 Mutation
+### 1.2.5 Mutation
 
 If new chromosomes were produced only through crossover, many traits not present in the initial random population could never occur, and the most-fit genes could saturate the population. **Mutation** allows new traits to spontaneously appear, allowing the genetic algorithm to explore more of the state space. Child chromosomes undergo mutation after crossover.
 
@@ -107,7 +107,7 @@ x = [-0.00994906141228906, -0.05198433759424115]
 
 ---
 
-## 9.3 Differential Evolution
+## 1.3 Differential Evolution
 
 **Differential evolution** attempts to improve each individual in the population by recombining other individuals according to a simple formula. It is parameterized by a crossover probability `p` and a differential weight `w`. Typically, `w` is between 0.4 and 1. For each individual `x`:
 
@@ -126,7 +126,7 @@ Differential evolution, which takes an objective function `f`, a `population`, a
 
 ---
 
-## 9.4 Particle Swarm Optimization
+## 1.4 Particle Swarm Optimization
 
 **Particle swarm optimization** introduces momentum to accelerate convergence toward minima. Each individual, or *particle*, in the population keeps track of its current position, velocity, and the best position it has seen so far. Momentum allows an individual to accumulate speed in a favorable direction, independent of local perturbations.
 
@@ -150,7 +150,7 @@ Particle swarm optimization, which takes an objective function `f`, a list of pa
 
 ---
 
-## 9.5 Firefly Algorithm
+## 1.5 Firefly Algorithm
 
 The **firefly algorithm** was inspired by the manner in which fireflies flash their lights to attract mates. In the firefly algorithm, each individual in the population is a firefly and can flash to attract other fireflies. At each iteration, all fireflies are moved toward all more attractive fireflies. A firefly **a** is moved toward a firefly **b** with greater attraction according to:
 
@@ -172,7 +172,7 @@ The firefly algorithm, which takes an objective function `f`, a population `flie
 
 ---
 
-## 9.6 Cuckoo Search
+## 1.6 Cuckoo Search
 
 **Cuckoo search** is another nature-inspired algorithm named after the cuckoo bird, which engages in a form of brood parasitism. Cuckoos lay their eggs in the nests of other birds; the host bird may detect the invasive egg and destroy it or establish a new nest elsewhere, or may accept and raise it.
 
@@ -194,7 +194,7 @@ Cuckoo search, which takes an objective function `f`, an initial set of nests `p
 
 ---
 
-## 9.7 Hybrid Methods
+## 1.7 Hybrid Methods
 
 Many population methods perform well in **global search**, being able to avoid local minima and finding the best regions of the design space. However, these methods do not perform as well in **local search** compared to descent methods. Several hybrid methods (also referred to as *memetic algorithms* or *genetic local search*) have been developed to extend population methods with descent-based features.
 
@@ -214,24 +214,11 @@ A **Baldwinian** approach will compute the same update but leaves the original d
 
 ---
 
-## 9.8 Summary
+## 1.8 Summary
 
 - Population methods use a collection of individuals in the design space to guide progression toward an optimum.
 - Genetic algorithms leverage **selection**, **crossover**, and **mutations** to produce better subsequent generations.
 - **Differential evolution**, **particle swarm optimization**, the **firefly algorithm**, and **cuckoo search** include rules and mechanisms for attracting design points to the best individuals in the population while maintaining suitable state space exploration.
 - Population methods can be extended with local search approaches to improve convergence.
 
----
 
-## 9.9 Exercises
-
-**Exercise 9.1.** What is the motivation behind the selection operation in genetic algorithms?
-
-**Exercise 9.2.** Why does mutation play such a fundamental role in genetic algorithms? How would we choose the mutation rate if we suspect there is a better optimal solution?
-
-**Exercise 9.3.** If we observe that particle swarm optimization results in fast convergence to a nonglobal minimum, how might we change the parameters of the algorithm?
-
----
-
-> © 2019 Massachusetts Institute of Technology, shared under a Creative Commons CC-BY-NC-ND license.  
-> *Kochenderfer, M. J. & Wheeler, T. A. (2019). Algorithms for Optimization. The MIT Press.*
