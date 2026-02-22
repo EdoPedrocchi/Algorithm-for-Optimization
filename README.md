@@ -1,5 +1,8 @@
 # Algorithm-for-Optimization
 
+The theory part, is from chapter 9 of  *Kochenderfer, M. J. & Wheeler, T. A. (2019). Algorithms for Optimization. The MIT Press.*
+The various sections have been modified with other materials found on the web
+
 https://edopedrocchi.github.io/Algorithm-for-Optimization/
 
 # Chapter 9: Population Methods
@@ -479,5 +482,4 @@ A **Baldwinian** approach will compute the same update but leaves the original d
 
 ---
 
-> © 2019 Massachusetts Institute of Technology, shared under a Creative Commons CC-BY-NC-ND license.  
-> *Kochenderfer, M. J. & Wheeler, T. A. (2019). Algorithms for Optimization. The MIT Press.*
+
