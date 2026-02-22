@@ -23,19 +23,6 @@ $$x_i^{(j)} \sim U(a_i, b_i)$$
 
 where $x^{(j)}$ is the $j$th individual in the population.
 
-### Algorithm 9.1 — Uniform Population Sampling
-
-A method for sampling an initial population of `m` design points over a uniform hyperrectangle with lower-bound vector `a` and upper-bound vector `b`.
-
-### Algorithm 9.2 — Normal Population Sampling
-
-A method for sampling an initial population of `m` design points using a multivariate normal distribution with mean `μ` and covariance `Σ`.
-
-Uniform and normal distributions limit the covered design space to a concentrated region. The **Cauchy distribution** has an unbounded variance and can cover a much broader space.
-
-### Algorithm 9.3 — Cauchy Population Sampling
-
-A method for sampling an initial population of `m` design points using a Cauchy distribution with location `μ` and scale `σ` for each dimension.
 
 ---
 
@@ -43,9 +30,6 @@ A method for sampling an initial population of `m` design points using a Cauchy 
 
 **Genetic algorithms** borrow inspiration from biological evolution, where fitter individuals are more likely to pass on their genes to the next generation. An individual's fitness for reproduction is inversely related to the value of the objective function at that point. The design point associated with an individual is represented as a **chromosome**. At each generation, the chromosomes of the fitter individuals are passed on to the next generation after undergoing the genetic operations of **crossover** and **mutation**.
 
-### Algorithm 9.4 — Genetic Algorithm
-
-The genetic algorithm, which takes an objective function `f`, an initial `population`, number of iterations `k_max`, a `SelectionMethod` S, a `CrossoverMethod` C, and a `MutationMethod` M.
 
 ### 1.2.1 Chromosomes
 
@@ -57,9 +41,6 @@ Binary strings are often used due to the ease of expressing crossover and mutati
 
 Genetic algorithms start with a random initial population. Binary string chromosomes are typically initialized using random bit strings.
 
-### Algorithm 9.5 — Binary Population Sampling
-
-A method for sampling random starting populations of `m` bit-string chromosomes of length `n`.
 
 ### 1.2.3 Selection
 
@@ -71,7 +52,6 @@ There are several approaches for biasing the selection toward the fittest:
 - **Tournament selection** — each parent is the fittest out of `k` randomly chosen chromosomes.
 - **Roulette wheel selection** (fitness proportionate selection) — each parent is chosen with a probability proportional to its performance relative to the population. The fitness of individual $i$ is assigned according to $\max\{y^{(1)}, \ldots, y^{(m)}\} - y^{(i)}$.
 
-### Algorithm 9.6 — Selection Methods
 
 ### 1.2.4 Crossover
 
@@ -87,11 +67,6 @@ $$x \leftarrow (1 - \lambda)x_a + \lambda x_b$$
 
 where $\lambda$ is a scalar parameter typically set to one-half.
 
-### Algorithm 9.7 — Crossover Methods
-
-### Algorithm 9.8 — Interpolation Crossover
-
-A crossover method for real-valued chromosomes which performs linear interpolation between the parents.
 
 ### 1.2.5 Mutation
 
@@ -99,17 +74,6 @@ If new chromosomes were produced only through crossover, many traits not present
 
 Each bit in a binary-valued chromosome typically has a small probability of being flipped. For a chromosome with `m` bits, this mutation rate is typically set to `1/m`, yielding an average of one mutation per child chromosome. Mutation for real-valued chromosomes is more commonly implemented by adding zero-mean Gaussian noise.
 
-### Algorithm 9.9 — Mutation Methods
-
-The bitwise mutation method for binary string chromosomes and the Gaussian mutation method for real-valued chromosomes. Here, `λ` is the mutation rate, and `σ` is the standard deviation.
-
-### Example 9.1 — Genetic Algorithm Demo
-
-Demonstration of using a genetic algorithm for optimizing a simple function.
-
-```
-x = [-0.00994906141228906, -0.05198433759424115]
-```
 
 ---
 
@@ -126,19 +90,12 @@ $$x'_i = \begin{cases} z_i & \text{if } i = j \text{ or with probability } p \\ 
 
 5. Insert the better design between $x$ and $x'$ into the next generation.
 
-### Algorithm 9.10 — Differential Evolution
-
-Differential evolution, which takes an objective function `f`, a `population`, a number of iterations `k_max`, a crossover probability `p`, and a differential weight `w`. The best individual is returned.
-
 ---
 
 ## 1.4 Particle Swarm Optimization
 
 **Particle swarm optimization** introduces momentum to accelerate convergence toward minima. Each individual, or *particle*, in the population keeps track of its current position, velocity, and the best position it has seen so far. Momentum allows an individual to accumulate speed in a favorable direction, independent of local perturbations.
 
-### Algorithm 9.11 — Particle Struct
-
-Each particle in particle swarm optimization has a position `x` and velocity `v` in design space and keeps track of the best design point found so far, `x_best`.
 
 At each iteration, each individual is accelerated toward both the best position it has seen and the best position found thus far by any individual. The update equations are:
 
@@ -149,10 +106,6 @@ $$v^{(i)} \leftarrow wv^{(i)} + c_1 r_1 \left(x^{(i)}_\text{best} - x^{(i)}\righ
 where $x_\text{best}$ is the best location found so far over all particles; $w$, $c_1$, and $c_2$ are parameters; and $r_1$ and $r_2$ are random numbers drawn from $U(0, 1)$.
 
 > A common strategy is to allow the inertia $w$ to decay over time.
-
-### Algorithm 9.12 — Particle Swarm Optimization
-
-Particle swarm optimization, which takes an objective function `f`, a list of particles `population`, a number of iterations `k_max`, an inertia `w`, and momentum coefficients `c1` and `c2`.
 
 ---
 
@@ -172,10 +125,6 @@ The intensity $I$ decreases as the distance $r$ between the two fireflies increa
 
 - **Gaussian drop-off** (recommended — avoids singularity at $r = 0$): $I(r) = e^{-\gamma r^2}$
 
-### Algorithm 9.13 — Firefly Algorithm
-
-The firefly algorithm, which takes an objective function `f`, a population `flies` of design points, a number of iterations `k_max`, a source intensity `β`, a random walk step size `α`, and an intensity function `I`. The best design point is returned.
-
 ---
 
 ## 1.6 Cuckoo Search
@@ -192,10 +141,6 @@ The core rules are:
 
 Cuckoo search uses a **Cauchy distribution** for random flights, which has a heavier tail than uniform or Gaussian distributions and is more representative of animal movement patterns in the wild.
 
-### Algorithm 9.14 — Cuckoo Search
-
-Cuckoo search, which takes an objective function `f`, an initial set of nests `population`, a number of iterations `k_max`, percent of nests to abandon `p_a`, and flight distribution `C`.
-
 > Other nature-inspired algorithms include the artificial bee colony, the gray wolf optimizer, the bat algorithm, glowworm swarm optimization, intelligent water drops, and harmony search. There has been some criticism of the proliferation of methods that make analogies to nature without fundamentally contributing novel methods and understanding.
 
 ---
@@ -210,7 +155,7 @@ There are two general approaches:
 
 - **Baldwinian learning** — the same local search method is applied to each individual, but the results are used only to update the individual's **perceived** objective function value. Individuals are not replaced but are merely associated with optimized objective function values. Baldwinian learning can help prevent premature convergence.
 
-### Example 9.2 — Lamarckian vs. Baldwinian Learning
+### Example — Lamarckian vs. Baldwinian Learning
 
 Consider optimizing $f(x) = -e^{-x^2} - 2e^{-(x-3)^2}$ using a population of individuals initialized near $x = 0$.
 
