@@ -1,4 +1,7 @@
 # Algorithm-for-Optimization
+
+https://edopedrocchi.github.io/Algorithm-for-Optimization/
+
 # Chapter 9: Population Methods
 
 Previous chapters have focused on methods where a single design point is moved incrementally toward a minimum. This chapter presents a variety of population methods that involve optimization using a collection of design points, called **individuals**. Having a large number of individuals distributed throughout the design space can help the algorithm avoid becoming stuck in a local minimum. Information at different points in the design space can be shared between individuals to globally optimize the objective function. Most population methods are stochastic in nature, and it is generally easy to parallelize the computation.
