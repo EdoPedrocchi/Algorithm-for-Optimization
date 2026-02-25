@@ -1,7 +1,7 @@
 ---
 layout: default
 ---
-The repository describes the theory behind "Populations Methods" and after that, it try to use this methdos in real pratical 
+This repository describes the theory behind "Populations Methods" and after that, it try to use this methdos in prartical projects
 
 The theory part, is from chapter 9 of Kochenderfer, M. J. & Wheeler, T. A. (2019). Algorithms for Optimization. The MIT Press. The various sections have been modified with other materials found on the web
 
