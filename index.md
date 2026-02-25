@@ -6,8 +6,7 @@ layout: default
 
 The theory part, is from chapter 9 of Kochenderfer, M. J. & Wheeler, T. A. (2019). Algorithms for Optimization. The MIT Press. The various sections have been modified with other materials found on the web
 
-
-# 1.1 Theory: Population Methods
+# 1. Theory: Population Methods
 
 Previous chapters have focused on methods where a single design point is moved incrementally toward a minimum. This chapter presents a variety of population methods that involve optimization using a collection of design points, called **individuals**. Having a large number of individuals distributed throughout the design space can help the algorithm avoid becoming stuck in a local minimum. Information at different points in the design space can be shared between individuals to globally optimize the objective function. Most population methods are stochastic in nature, and it is generally easy to parallelize the computation.
 
