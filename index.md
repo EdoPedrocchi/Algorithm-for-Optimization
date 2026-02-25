@@ -22,7 +22,15 @@ $$x_i^{(j)} \sim U(a_i, b_i)$$
 
 where $x^{(j)}$ is the $j$th individual in the population.
 
+<img width="1080" height="594" alt="Screenshot 2026-02-25 alle 17 04 49" src="https://github.com/user-attachments/assets/445d7337-4bf6-46d9-a241-5cdb46c51699" />
 
+A comparison of the normal distribution with standard deviation 1 and the Cauchy dis- tribution with scale 1. Although σ is sometimes used for the scale parameter in the Cauchy distri- bution, this should not be con- fused with the standard deviation since the standard deviation of the Cauchy distribution is undefined. The Cauchy distribution is heavy- tailed, allowing it to cover the de- sign space more broadly.
+
+
+<img width="1236" height="583" alt="Screenshot 2026-02-25 alle 17 07 48" src="https://github.com/user-attachments/assets/50a6c216-561a-4efe-a6bc-22cafcc5adc7" />
+
+nota: va messo riformattato emesso le formule
+A comparison of the normal distribution with standard deviation 1 and the Cauchy dis- tribution with scale 1. Although σ is sometimes used for the scale parameter in the Cauchy distri- bution, this should not be con- fused with the standard deviation since the standard deviation of the Cauchy distribution is undefined. The Cauchy distribution is heavy- tailed, allowing it to cover the de- sign space more broadly.
 ---
 
 ## 1.2 Genetic Algorithms
@@ -35,6 +43,10 @@ where $x^{(j)}$ is the $j$th individual in the population.
 There are several ways to represent chromosomes. The simplest is the **binary string chromosome**, a representation similar to the way DNA is encoded. A random binary string of length `d` can be generated using `bitrand(d)`.
 
 Binary strings are often used due to the ease of expressing crossover and mutation. It is often more natural to represent a chromosome using a list of real values. Such **real-valued chromosomes** are vectors in $\mathbb{R}^d$ that directly correspond to points in the design space.
+
+<img width="1150" height="122" alt="Screenshot 2026-02-25 alle 17 06 03" src="https://github.com/user-attachments/assets/7f2b356a-10f5-490e-b7bb-728623ba7974" />
+
+A chromosome represented as a binary string.
 
 ### 1.2.2 Initialization
 
@@ -51,14 +63,26 @@ There are several approaches for biasing the selection toward the fittest:
 - **Tournament selection** — each parent is the fittest out of `k` randomly chosen chromosomes.
 - **Roulette wheel selection** (fitness proportionate selection) — each parent is chosen with a probability proportional to its performance relative to the population. The fitness of individual $i$ is assigned according to $\max\{y^{(1)}, \ldots, y^{(m)}\} - y^{(i)}$.
 
+<img width="937" height="671" alt="Screenshot 2026-02-25 alle 17 09 26" src="https://github.com/user-attachments/assets/c8f6ebdd-60e4-47b4-8ccc-fc1c00b62776" />
+
+
 
 ### 1.2.4 Crossover
 
 Crossover combines the chromosomes of parents to form children. There are several crossover schemes:
 
 - **Single-point crossover** — the first portion of parent A's chromosome forms the first portion of the child, and the latter portion of parent B's chromosome forms the latter part. The crossover point is determined uniformly at random.
+
+<img width="1144" height="182" alt="Screenshot 2026-02-25 alle 17 11 55" src="https://github.com/user-attachments/assets/16d7a6ce-9859-4630-a6d4-248c47f903b2" />
+
 - **Two-point crossover** — uses two random crossover points.
+<img width="1159" height="182" alt="Screenshot 2026-02-25 alle 17 12 33" src="https://github.com/user-attachments/assets/8b6e3314-d578-4113-8ec1-38cae20772da" />
+
+
 - **Uniform crossover** — each bit has a fifty percent chance of coming from either parent.
+
+<img width="1159" height="159" alt="Screenshot 2026-02-25 alle 17 13 03" src="https://github.com/user-attachments/assets/c7847f5e-ded9-41cf-8800-16b1ad8193fa" />
+
 
 For real-valued chromosomes, values can also be linearly interpolated between the parents:
 
@@ -67,12 +91,23 @@ $$x \leftarrow (1 - \lambda)x_a + \lambda x_b$$
 where $\lambda$ is a scalar parameter typically set to one-half.
 
 
+
+
 ### 1.2.5 Mutation
 
 If new chromosomes were produced only through crossover, many traits not present in the initial random population could never occur, and the most-fit genes could saturate the population. **Mutation** allows new traits to spontaneously appear, allowing the genetic algorithm to explore more of the state space. Child chromosomes undergo mutation after crossover.
 
 Each bit in a binary-valued chromosome typically has a small probability of being flipped. For a chromosome with `m` bits, this mutation rate is typically set to `1/m`, yielding an average of one mutation per child chromosome. Mutation for real-valued chromosomes is more commonly implemented by adding zero-mean Gaussian noise.
 
+<img width="817" height="100" alt="Screenshot 2026-02-25 alle 17 16 38" src="https://github.com/user-attachments/assets/b7352d09-632a-405f-a78c-f39bc2d8e014" />
+above44
+Mutation for binary string chromosomes gives each bit a small probability of flipping.
+
+
+
+<img width="1036" height="281" alt="Screenshot 2026-02-25 alle 17 14 02" src="https://github.com/user-attachments/assets/fee23b63-06b4-4126-a636-807314b9fd43" />
+above
+A genetic algorithm with truncation selection, single point crossover, and Gaussian mu- tation with σ = 0.1 applied to the Michalewicz function
 
 ---
 
@@ -88,6 +123,16 @@ Each bit in a binary-valued chromosome typically has a small probability of bein
 $$x'_i = \begin{cases} z_i & \text{if } i = j \text{ or with probability } p \\ x_i & \text{otherwise} \end{cases}$$
 
 5. Insert the better design between $x$ and $x'$ into the next generation.
+
+
+Differential evolution takes three individuals a, b, and c and combines them to form the can- didate individual z. watch:
+
+
+<img width="164" height="96" alt="Screenshot 2026-02-25 alle 17 18 00" src="https://github.com/user-attachments/assets/1b2554bb-e432-4666-aa26-603c4d87b2dc" />
+
+The algorithm is demonstrated with the following image. in particular you can see:
+Differential evolution with p = 0.5 and w = 0.2 applied to Ackley’s function,
+<img width="1109" height="547" alt="Screenshot 2026-02-25 alle 17 19 00" src="https://github.com/user-attachments/assets/edcd153f-0d4d-4ebe-83a8-bcec7fcf880f" />
 
 ---
 
@@ -124,6 +169,11 @@ The intensity $I$ decreases as the distance $r$ between the two fireflies increa
 
 - **Gaussian drop-off** (recommended — avoids singularity at $r = 0$): $I(r) = e^{-\gamma r^2}$
 
+
+Firefly search, with α = 0.5,β = 1,andγ = 0.1ap- plied to the Branin function
+<img width="1109" height="288" alt="Screenshot 2026-02-25 alle 17 20 39" src="https://github.com/user-attachments/assets/1cd292ca-f9e6-4359-89c2-519ee50465e9" />
+
+
 ---
 
 ## 1.6 Cuckoo Search
@@ -148,6 +198,11 @@ Cuckoo search uses a **Cauchy distribution** for random flights, which has a hea
 
 Many population methods perform well in **global search**, being able to avoid local minima and finding the best regions of the design space. However, these methods do not perform as well in **local search** compared to descent methods. Several hybrid methods (also referred to as *memetic algorithms* or *genetic local search*) have been developed to extend population methods with descent-based features.
 
+Cuckoo search applied to the Branin function
+
+<img width="1109" height="262" alt="Screenshot 2026-02-25 alle 17 21 40" src="https://github.com/user-attachments/assets/793d95f5-a10f-4403-9ae3-66863f6bf87a" />
+
+
 There are two general approaches:
 
 - **Lamarckian learning** — the population method is extended with a local search method that locally improves each individual. The original individual and its objective function value are **replaced** by the individual's optimized counterpart.
@@ -155,6 +210,9 @@ There are two general approaches:
 - **Baldwinian learning** — the same local search method is applied to each individual, but the results are used only to update the individual's **perceived** objective function value. Individuals are not replaced but are merely associated with optimized objective function values. Baldwinian learning can help prevent premature convergence.
 
 ### Example — Lamarckian vs. Baldwinian Learning
+
+<img width="901" height="720" alt="Screenshot 2026-02-25 alle 17 23 08" src="https://github.com/user-attachments/assets/db6c1918-e46f-4f79-a16e-e37dba81b2a9" />
+
 
 Consider optimizing $f(x) = -e^{-x^2} - 2e^{-(x-3)^2}$ using a population of individuals initialized near $x = 0$.
 
