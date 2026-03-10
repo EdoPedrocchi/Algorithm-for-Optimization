@@ -24,6 +24,7 @@ Why we don't just use standard calculus (gradients), it’s because real-world m
 - Parallelism: Since you have many candidates, you can calculate their fitness simultaneously on multiple processors.
 
 Note: The trade-off is speed. These methods usually require more "fitness evaluations" (calculations) than gradient-based methods.
+
 ---
 
 ## 1.1 Initialization
