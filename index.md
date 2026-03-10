@@ -11,6 +11,19 @@ population methods involve optimization using a collection of design points, cal
 
 Information at different points in the design space can be shared between individuals to globally optimize the objective function. Most population methods are stochastic in nature, and it is generally easy to parallelize the computation.
 
+Unlike "trajectory-based" methods (like Gradient Descent) that follow a single path, these algorithms throw a whole crowd of potential solutions into the search space and let them interact to find the best answer.
+
+It’s essentially "survival of the fittest" applied to data.
+
+Why we don't just use standard calculus (gradients), it’s because real-world math is often messy. Population methods offer:
+
+- Global Exploration: They are less likely to get stuck in a "local trap" (a small hill that looks like a mountain until you see the real Everest further away).
+
+- No Gradient Needed: They work on "black box" problems where we don't have a neat formula for the derivative.
+
+- Parallelism: Since you have many candidates, you can calculate their fitness simultaneously on multiple processors.
+
+Note: The trade-off is speed. These methods usually require more "fitness evaluations" (calculations) than gradient-based methods.
 ---
 
 ## 1.1 Initialization
